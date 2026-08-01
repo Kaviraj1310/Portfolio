@@ -140,7 +140,7 @@ const Hero = () => {
               <a href="#projects" className="group glass px-6 py-3 rounded-full flex items-center gap-2 text-white hover:bg-white/10 transition-all hover:scale-105 active:scale-95 border-primary/30 shadow-[0_0_15px_rgba(93,174,255,0.15)]">
                 Explore Projects <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="/Kaviraj_Thangapandian_Resume.pdf" target="_blank" rel="noreferrer" className="glass px-6 py-3 rounded-full flex items-center gap-2 text-white hover:bg-white/10 transition-all hover:scale-105 active:scale-95">
+              <a href="/Kaviraj%20Thangapandian.pdf" target="_blank" rel="noreferrer" className="glass px-6 py-3 rounded-full flex items-center gap-2 text-white hover:bg-white/10 transition-all hover:scale-105 active:scale-95">
                 Resume <FileDown size={16} />
               </a>
               <div className="flex gap-2">

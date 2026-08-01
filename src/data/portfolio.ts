@@ -126,6 +126,7 @@ export const portfolioData = {
   socials: {
     github: "https://github.com/Kaviraj1310",
     linkedin: "https://www.linkedin.com/in/kaviraj-thangapandian",
+    leetcode: "https://leetcode.com/u/kavirajt1310/",
     email: "kaviraj.thangapandian@gmail.com"
   },
   seo: {

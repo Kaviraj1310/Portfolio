@@ -14,4 +14,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    sourcemap: false, // Ensures source code is never exposed in production
+    minify: true,     // Heavily obfuscates and minifies the code
+  },
 });

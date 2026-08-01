@@ -1,8 +1,14 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Github, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, ArrowRight } from 'lucide-react';
 import { portfolioData } from '@/data/portfolio';
+
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } }
+};
 
 const ProjectDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,14 +20,14 @@ const ProjectDetails = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-white">
+      <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" className="min-h-screen flex items-center justify-center text-white">
         Project not found. <Link to="/" className="text-primary ml-2 hover:underline">Go back home</Link>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="bg-background min-h-screen pt-32 pb-20">
+    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" className="bg-background min-h-screen pt-32 pb-20">
       <div className="container mx-auto px-6 max-w-5xl">
         
         {/* Navigation */}
@@ -136,7 +142,7 @@ const ProjectDetails = () => {
         </div>
 
       </div>
-    </div>
+    </motion.div>
   );
 };
 

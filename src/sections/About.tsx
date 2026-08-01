@@ -43,9 +43,29 @@ const About = () => {
               className="glass p-8 md:p-10 rounded-3xl"
             >
               <h3 className="text-sm font-mono text-muted mb-4 uppercase tracking-wider">Summary</h3>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light">
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light mb-8">
                 {portfolioData.profile.description}
               </p>
+
+              {/* Terminal Code Snippet */}
+              <div className="bg-[#0a0a0a] border border-white/5 rounded-xl p-5 md:p-6 font-mono text-sm leading-relaxed overflow-x-auto shadow-inner shadow-black/50">
+                <div className="flex gap-2 mb-4 opacity-70">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                </div>
+                <div className="text-[#569cd6]">const <span className="text-[#4fc1ff]">kaviraj</span> = {'{'}</div>
+                <div className="pl-4">
+                  <span className="text-[#9cdcfe]">currently_building</span>: <span className="text-[#ce9178]">"AI platforms & scalable backends"</span>,
+                  <br />
+                  <span className="text-[#9cdcfe]">exploring</span>: <span className="text-[#ce9178]">["Deep Learning", "Cloud", "System Design"]</span>,
+                  <br />
+                  <span className="text-[#9cdcfe]">grinding</span>: <span className="text-[#ce9178]">"Data Structures & Algorithms"</span>,
+                  <br />
+                  <span className="text-[#9cdcfe]">location</span>: <span className="text-[#ce9178]">"Chennai, India"</span>
+                </div>
+                <div className="text-[#569cd6]">{'}'}</div>
+              </div>
             </motion.div>
 
             <motion.div 
