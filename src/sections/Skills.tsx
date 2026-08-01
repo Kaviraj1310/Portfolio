@@ -104,16 +104,16 @@ const Skills = () => {
             <p className="text-secondary max-w-md">Download my resume to see a detailed overview of my professional experience, education, and skills.</p>
           </div>
           
-          <div className="flex gap-4 shrink-0">
+          <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full sm:w-auto mt-6 md:mt-0">
             <a 
               href="/Kaviraj%20Thangapandian.pdf" target="_blank" rel="noreferrer"
-              className="px-6 py-3 bg-white text-black rounded-full font-medium flex items-center gap-2 hover:bg-white/90 transition-colors"
+              className="px-6 py-3 bg-white text-black rounded-full font-medium flex items-center justify-center gap-2 hover:bg-white/90 transition-colors w-full sm:w-auto"
             >
               <Download size={18} /> Download PDF
             </a>
             <a 
               href={portfolioData.socials.linkedin} target="_blank" rel="noreferrer"
-              className="px-6 py-3 glass rounded-full text-white font-medium flex items-center gap-2 hover:bg-white/10 transition-colors"
+              className="px-6 py-3 glass rounded-full text-white font-medium flex items-center justify-center gap-2 hover:bg-white/10 transition-colors w-full sm:w-auto"
             >
               LinkedIn <ExternalLink size={18} />
             </a>
