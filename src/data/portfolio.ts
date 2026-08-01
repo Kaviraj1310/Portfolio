@@ -124,8 +124,8 @@ export const portfolioData = {
     cloud: ["Oracle Cloud Infrastructure"]
   },
   socials: {
-    github: "https://github.com/kaviraj",
-    linkedin: "https://linkedin.com/in/kaviraj",
+    github: "https://github.com/Kaviraj1310",
+    linkedin: "https://www.linkedin.com/in/kaviraj-thangapandian",
     email: "kaviraj.thangapandian@gmail.com"
   },
   seo: {
