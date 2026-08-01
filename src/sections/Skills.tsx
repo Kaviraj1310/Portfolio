@@ -78,7 +78,7 @@ const Skills = () => {
                 transition={{ duration: 0.3 }}
                 className="flex flex-wrap justify-center gap-4 relative z-10 w-full"
               >
-                {portfolioData.skills[activeCategory || categories[0]].map((skill, idx) => (
+                {portfolioData.skills[(activeCategory || categories[0]) as keyof typeof portfolioData.skills].map((skill: string, idx: number) => (
                   <motion.div
                     key={skill}
                     initial={{ opacity: 0, y: 10 }}
