@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUpRight, Code2 } from 'lucide-react';
+import { Github, Linkedin, Mail, Code2 } from 'lucide-react';
 import { portfolioData } from '@/data/portfolio';
 
 const Contact = () => {
