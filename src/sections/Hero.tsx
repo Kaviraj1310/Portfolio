@@ -147,7 +147,7 @@ const Hero = () => {
                 <a href={portfolioData.socials.github} target="_blank" rel="noreferrer" className="glass p-3 rounded-full text-white hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
                   <Github size={20} />
                 </a>
-                <a href={`mailto:${portfolioData.socials.email}`} className="glass p-3 rounded-full text-white hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
+                <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${portfolioData.socials.email}`} target="_blank" rel="noreferrer" className="glass p-3 rounded-full text-white hover:bg-white/10 transition-all hover:scale-110 active:scale-95">
                   <Mail size={20} />
                 </a>
               </div>

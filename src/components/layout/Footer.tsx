@@ -40,7 +40,7 @@ const Footer = () => {
             <h4 className="text-white font-medium">Socials</h4>
             <a href={portfolioData.socials.github} target="_blank" rel="noreferrer" className="text-muted hover:text-white transition-colors">GitHub</a>
             <a href={portfolioData.socials.linkedin} target="_blank" rel="noreferrer" className="text-muted hover:text-white transition-colors">LinkedIn</a>
-            <a href={`mailto:${portfolioData.socials.email}`} className="text-muted hover:text-white transition-colors">Email</a>
+            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${portfolioData.socials.email}`} target="_blank" rel="noreferrer" className="text-muted hover:text-white transition-colors">Email</a>
           </div>
 
         </div>

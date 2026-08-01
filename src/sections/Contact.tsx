@@ -48,7 +48,7 @@ const Contact = () => {
           </a>
 
           {/* Email Card */}
-          <a href={`mailto:${portfolioData.socials.email}`} className="group glass p-10 rounded-3xl flex flex-col items-center justify-center gap-4 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(93,174,255,0.15)]">
+          <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${portfolioData.socials.email}`} target="_blank" rel="noreferrer" className="group glass p-10 rounded-3xl flex flex-col items-center justify-center gap-4 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(93,174,255,0.15)]">
             <div className="w-20 h-20 rounded-full bg-surface/50 border border-white/5 flex items-center justify-center text-white group-hover:bg-primary/20 group-hover:border-primary/30 group-hover:text-primary transition-all duration-500">
               <Mail size={36} />
             </div>
