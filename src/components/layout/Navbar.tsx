@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Terminal, X } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/#about' },
-  { name: 'Experience', path: '/#experience' },
-  { name: 'Projects', path: '/#projects' },
-  { name: 'Skills', path: '/#skills' },
-  { name: 'Resume', path: '/#resume' },
-  { name: 'Contact', path: '/#contact' },
+  { name: 'sys.home', path: '/' },
+  { name: 'sys.about', path: '/#about' },
+  { name: 'sys.experience', path: '/#experience' },
+  { name: 'sys.projects', path: '/#projects' },
+  { name: 'sys.modules', path: '/#skills' },
+  { name: 'sys.contact', path: '/#contact' },
 ];
 
 const Navbar = () => {
@@ -19,19 +18,14 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     if (path.startsWith('/#')) {
-      if (location.pathname !== '/') {
-        // Will navigate to home first, handled by Link
-        return;
-      }
+      if (location.pathname !== '/') return;
       e.preventDefault();
       const id = path.replace('/#', '');
       const element = document.getElementById(id);
@@ -44,68 +38,75 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.header
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 rounded-full w-max max-w-[95%] ${
-          scrolled ? 'glass px-8 py-3 shadow-2xl' : 'glass px-8 py-4 bg-transparent border-transparent shadow-none'
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
+          scrolled ? 'bg-background border-primary shadow-[0_4px_20px_rgba(0,255,65,0.15)]' : 'bg-transparent border-transparent'
         }`}
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="flex items-center justify-center">
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={(e) => handleScrollTo(e, link.path)}
-                className="relative px-4 py-2 text-sm font-medium text-secondary hover:text-white transition-colors group"
-              >
-                {link.name}
-                <span className="absolute inset-x-0 -bottom-1 h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out" />
-              </Link>
-            ))}
-          </nav>
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-14">
+            
+            {/* System Status / Logo */}
+            <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-sm">
+              <Terminal size={16} />
+              <span className="hidden sm:inline">Kaviraj_AI_Core_v2.0</span>
+              <span className="sm:hidden">Kaviraj_AI</span>
+              <span className="animate-blink">_</span>
+            </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={(e) => handleScrollTo(e, link.path)}
+                  className="px-3 py-1.5 text-xs font-bold text-muted-foreground hover:text-background hover:bg-primary uppercase tracking-widest transition-colors"
+                >
+                  [{link.name}]
+                </Link>
+              ))}
+            </nav>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              className="md:hidden text-primary border border-primary p-1"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={20} /> : <span className="px-2 text-xs font-bold uppercase">Menu</span>}
+            </button>
+          </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Nav Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            animate={{ opacity: 1, backdropFilter: 'blur(40px)' }}
-            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            className="fixed inset-0 z-40 bg-background/80 flex items-center justify-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 top-14 z-40 bg-background border-b border-primary flex flex-col"
           >
-            <motion.nav className="flex flex-col items-center space-y-6">
+            <nav className="flex flex-col p-6 space-y-4">
+              <div className="text-secondary text-xs mb-4">{'// SELECT_MODULE'}</div>
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ delay: i * 0.1 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
                 >
                   <Link
                     to={link.path}
                     onClick={(e) => handleScrollTo(e, link.path)}
-                    className="text-2xl font-bold text-white hover:text-primary transition-colors"
+                    className="block text-xl font-bold text-primary uppercase hover:bg-primary hover:text-background p-2 transition-colors border-l-2 border-primary/30 hover:border-primary"
                   >
-                    {link.name}
+                    {'>'} {link.name}
                   </Link>
                 </motion.div>
               ))}
-            </motion.nav>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

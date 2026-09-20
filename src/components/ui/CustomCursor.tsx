@@ -9,14 +9,14 @@ const CustomCursor = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
+  const springConfig = { damping: 40, stiffness: 400, mass: 0.5 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 16);
-      cursorY.set(e.clientY - 16);
+      cursorX.set(e.clientX - 10);
+      cursorY.set(e.clientY - 10);
     };
 
     const handleMouseEnter = () => setIsVisible(true);
@@ -33,13 +33,13 @@ const CustomCursor = () => {
       if (linkOrButton) {
         if (linkOrButton.tagName.toLowerCase() === 'a' && linkOrButton.getAttribute('href')?.includes('github')) {
           setCursorType('text');
-          setCursorText('OPEN');
+          setCursorText('GIT');
         } else if (linkOrButton.tagName.toLowerCase() === 'a' && linkOrButton.getAttribute('href')?.includes('mailto')) {
           setCursorType('text');
-          setCursorText('SEND');
-        } else if (linkOrButton.closest('.project-card')) {
+          setCursorText('SMTP');
+        } else if (linkOrButton.closest('.terminal-panel')) {
           setCursorType('text');
-          setCursorText('VIEW');
+          setCursorText('EXEC');
         } else {
           setCursorType('hover');
           setCursorText('');
@@ -73,44 +73,26 @@ const CustomCursor = () => {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[99999] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[99999]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
         }}
         animate={{
-          scale: cursorType === 'hover' ? 1.5 : cursorType === 'text' ? 2 : cursorType === 'text-beam' ? 0.2 : 1,
-          opacity: cursorType === 'text-beam' ? 0 : 1,
-          backgroundColor: cursorType === 'default' ? '#fff' : 'transparent',
-          border: cursorType === 'default' ? 'none' : '1px solid #fff',
+          width: cursorType === 'text-beam' ? 2 : cursorType === 'text' ? 40 : 20,
+          height: cursorType === 'text' ? 20 : 20,
+          opacity: 1,
+          backgroundColor: cursorType === 'default' ? '#00FF41' : 'transparent',
+          border: cursorType === 'default' ? 'none' : '2px solid #00FF41',
         }}
         transition={{ type: "spring", stiffness: 500, damping: 28 }}
       >
         {cursorType === 'text' && (
-          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[8px] font-bold tracking-wider text-white whitespace-nowrap mix-blend-difference">
+          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-bold font-mono tracking-wider text-primary whitespace-nowrap">
             {cursorText}
           </span>
         )}
       </motion.div>
-      {cursorType === 'text-beam' && (
-        <motion.div
-          className="fixed top-0 left-0 w-[2px] h-6 bg-white pointer-events-none z-[99999] mix-blend-difference"
-          style={{
-            x: cursorXSpring,
-            y: cursorYSpring,
-          }}
-        />
-      )}
-      <motion.div
-        className="fixed top-0 left-0 w-32 h-32 rounded-full pointer-events-none z-[99998] blur-3xl opacity-20"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-          translateX: '-40%',
-          translateY: '-40%',
-          backgroundColor: 'rgba(93, 174, 255, 0.4)'
-        }}
-      />
     </>
   );
 };

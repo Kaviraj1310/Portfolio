@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Github, ExternalLink, ArrowRight } from 'lucide-react';
 import { portfolioData } from '@/data/portfolio';
+import { ArrowLeft, Github, ExternalLink, Terminal } from 'lucide-react';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -12,132 +12,106 @@ const pageVariants = {
 
 const ProjectDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const project = portfolioData.projects.find((p) => p.id === id);
+  const navigate = useNavigate();
+  
+  const project = portfolioData.projects.find(p => p.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+  }, []);
 
   if (!project) {
     return (
-      <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" className="min-h-screen flex items-center justify-center text-white">
-        Project not found. <Link to="/" className="text-primary ml-2 hover:underline">Go back home</Link>
-      </motion.div>
+      <div className="min-h-screen flex items-center justify-center bg-background text-primary font-mono">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-4">404: MODULE_NOT_FOUND</h1>
+          <p className="text-muted-foreground mb-8">The requested module could not be located in the directory.</p>
+          <button onClick={() => navigate('/')} className="px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-background transition-colors uppercase tracking-widest font-bold">
+            cd ..
+          </button>
+        </div>
+      </div>
     );
   }
 
   return (
-    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" className="bg-background min-h-screen pt-32 pb-20">
+    <motion.div 
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="min-h-screen bg-background pt-32 pb-24 font-mono"
+    >
       <div className="container mx-auto px-6 max-w-5xl">
         
-        {/* Navigation */}
-        <Link to="/#projects" className="inline-flex items-center gap-2 text-secondary hover:text-white transition-colors mb-12 group">
-          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-          Back to Projects
+        <Link to="/#projects" className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-12 uppercase tracking-widest text-sm font-bold">
+          <ArrowLeft size={16} /> return_to_projects()
         </Link>
 
-        {/* Hero */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <div className="flex items-center gap-4 mb-6">
-            <span className="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-mono">
+        <div className="terminal-panel p-8 md:p-12 mb-16 relative">
+          <div className="absolute top-0 left-0 w-full h-8 bg-primary/20 border-b border-primary flex items-center px-4 justify-between text-xs text-primary font-bold">
+            <div><Terminal size={14} className="inline mr-2"/> project_details.sh</div>
+          </div>
+          
+          <div className="pt-8">
+            <span className="text-primary px-2 py-1 border border-primary/40 bg-surface text-xs uppercase tracking-widest mb-6 inline-block">
               {project.category}
             </span>
-            <span className="px-3 py-1 rounded-full glass text-secondary text-sm font-mono border border-white/5">
-              {project.status}
-            </span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-semibold text-white mb-6 leading-tight">
-            {project.name}
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-secondary max-w-3xl leading-relaxed">
-            {project.longDescription}
-          </p>
-        </motion.div>
-
-        {/* Image / Video Header */}
-        {project.image && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden glass border border-white/10 mb-20 relative"
-          >
-            <img src={project.image} alt={project.name} className="w-full h-full object-cover opacity-80" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
-          </motion.div>
-        )}
-
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
-          
-          {/* Main Content */}
-          <div className="md:col-span-8 space-y-12">
             
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <h2 className="text-3xl font-serif italic text-white mb-6">Overview</h2>
-              <p className="text-secondary leading-relaxed text-lg">
-                The {project.name} was built to solve critical problems in the {project.category} domain. 
-                By leveraging modern architectural patterns and robust engineering practices, this project 
-                stands as a testament to building scalable, intelligent systems.
-              </p>
-            </motion.div>
-
-            {/* Metrics */}
-            {project.metrics && (
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                <h2 className="text-3xl font-serif italic text-white mb-6">Performance & Impact</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                  {project.metrics.map((metric, i) => (
-                    <div key={i} className="glass p-6 rounded-2xl border border-white/5">
-                      <p className="text-3xl font-semibold text-white mb-2">{metric.value}</p>
-                      <p className="text-sm font-mono text-muted uppercase tracking-wider">{metric.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <h2 className="text-3xl font-serif italic text-white mb-6">Architecture & Challenges</h2>
-              <p className="text-secondary leading-relaxed text-lg mb-6">
-                One of the main challenges was ensuring high availability while maintaining low latency. 
-                This was achieved by implementing a microservices architecture and utilizing caching layers 
-                effectively.
-              </p>
-            </motion.div>
-
-          </div>
-
-          {/* Sidebar */}
-          <div className="md:col-span-4 space-y-10">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 uppercase tracking-tighter">
+              {project.name}
+            </h1>
             
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }} className="glass p-8 rounded-3xl border border-white/5">
-              <h3 className="text-lg font-medium text-white mb-6 uppercase tracking-widest font-mono">Tech Stack</h3>
-              <div className="flex flex-wrap gap-3">
-                {project.techStack.map(tech => (
-                  <span key={tech} className="px-4 py-2 bg-surface text-secondary text-sm rounded-lg border border-white/5 hover:border-primary/50 transition-colors">
-                    {tech}
-                  </span>
-                ))}
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl">
+              {project.description}
+            </p>
+
+            <div className="flex flex-wrap gap-4 mb-12">
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 bg-primary text-background font-bold uppercase tracking-wider hover:bg-white transition-colors text-sm">
+                  <Github size={18} /> View_Source
+                </a>
+              )}
+              {project.liveDemo && (
+                <a href={project.liveDemo} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 border border-primary text-primary font-bold uppercase tracking-wider hover:bg-primary hover:text-background transition-colors text-sm">
+                  <ExternalLink size={18} /> Execute_Demo
+                </a>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-secondary text-xs uppercase tracking-widest mb-4">{'// LONG_DESCRIPTION'}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                  {project.longDescription}
+                </p>
               </div>
-            </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }} className="glass p-8 rounded-3xl border border-white/5 flex flex-col gap-4">
-              <h3 className="text-lg font-medium text-white mb-2 uppercase tracking-widest font-mono">Links</h3>
-              
-              <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center justify-between p-4 rounded-xl bg-surface border border-white/5 hover:border-primary/50 transition-colors group">
-                <span className="flex items-center gap-3 text-white font-medium"><Github size={20} /> GitHub Repository</span>
-                <ArrowRight size={18} className="text-muted group-hover:text-primary transition-colors" />
-              </a>
-              
-              <a href={project.liveDemo} target="_blank" rel="noreferrer" className="flex items-center justify-between p-4 rounded-xl bg-surface border border-white/5 hover:border-primary/50 transition-colors group">
-                <span className="flex items-center gap-3 text-white font-medium"><ExternalLink size={20} /> Live Deployment</span>
-                <ArrowRight size={18} className="text-muted group-hover:text-primary transition-colors" />
-              </a>
-            </motion.div>
-            
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-secondary text-xs uppercase tracking-widest mb-4">{'// TECH_STACK'}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map(tech => (
+                      <span key={tech} className="px-3 py-1 bg-surface border border-primary/30 text-primary text-sm uppercase">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-secondary text-xs uppercase tracking-widest mb-4">{'// SYSTEM_METRICS'}</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {project.metrics.map((metric, i) => (
+                      <div key={i} className="border-l-2 border-primary/50 pl-4">
+                        <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
+                        <div className="text-xs text-primary uppercase tracking-widest">{metric.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

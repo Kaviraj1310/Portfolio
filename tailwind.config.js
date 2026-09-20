@@ -17,37 +17,37 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['Inter', 'sans-serif'],
+        sans: ['JetBrains Mono', 'monospace'],
+        serif: ['JetBrains Mono', 'monospace'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
-        border: "rgba(255, 255, 255, 0.08)",
-        input: "rgba(255, 255, 255, 0.05)",
-        ring: "#5DAEFF",
-        background: "#040404",
-        foreground: "#FFFFFF",
-        surface: "#0B0B0B",
+        border: "rgba(0, 255, 65, 0.3)", // Hacker green border
+        input: "rgba(0, 255, 65, 0.1)",
+        ring: "#00FF41",
+        background: "#020202", // Deep terminal black
+        foreground: "#E0E0E0", // Light grey text
+        surface: "#0A0A0A", // Slightly lighter black
         primary: {
-          DEFAULT: "#5DAEFF",
-          foreground: "#FFFFFF",
+          DEFAULT: "#00FF41", // Matrix green
+          foreground: "#020202",
         },
         secondary: {
-          DEFAULT: "#A3A3A3",
-          foreground: "#040404",
+          DEFAULT: "#00FFFF", // Cyan accent
+          foreground: "#020202",
         },
         muted: {
-          DEFAULT: "#707070",
+          DEFAULT: "#666666",
           foreground: "#A3A3A3",
         },
         accent: {
-          DEFAULT: "rgba(255,255,255,0.05)",
-          foreground: "#FFFFFF",
+          DEFAULT: "rgba(0,255,65,0.1)",
+          foreground: "#00FF41",
         },
-        glow: "rgba(93, 174, 255, 0.25)",
+        glow: "rgba(0, 255, 65, 0.4)",
       },
       backgroundImage: {
-        'accent-gradient': 'linear-gradient(135deg, #89AACC 0%, #4E85BF 100%)',
+        'accent-gradient': 'linear-gradient(90deg, #00FF41 0%, #00FFFF 100%)',
       },
       keyframes: {
         "accordion-down": {
@@ -61,12 +61,26 @@ export default {
         "marquee": {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-100%)" },
+        },
+        "blink": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+        "glitch": {
+          "0%": { transform: "translate(0)" },
+          "20%": { transform: "translate(-2px, 2px)" },
+          "40%": { transform: "translate(-2px, -2px)" },
+          "60%": { transform: "translate(2px, 2px)" },
+          "80%": { transform: "translate(2px, -2px)" },
+          "100%": { transform: "translate(0)" }
         }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "marquee": "marquee 20s linear infinite",
+        "blink": "blink 1s step-end infinite",
+        "glitch": "glitch 0.2s cubic-bezier(.25, .46, .45, .94) both infinite"
       },
     },
   },

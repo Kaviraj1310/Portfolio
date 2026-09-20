@@ -1,117 +1,71 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { portfolioData } from '@/data/portfolio';
+import { Terminal } from 'lucide-react';
 
 const About = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
   return (
-    <section id="about" className="relative min-h-screen py-32 flex items-center" ref={containerRef}>
-      {/* Background Subtle Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
-
-      <motion.div style={{ opacity }} className="container mx-auto px-6 relative z-10">
+    <section id="about" className="relative py-32 bg-background border-t border-primary/20">
+      <div className="container mx-auto px-6 max-w-6xl">
         
-        {/* Section Intro */}
-        <div className="mb-16 flex flex-col items-start gap-4">
+        <div className="mb-16">
           <motion.div 
             initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-            className="flex items-center gap-2 glass px-3 py-1.5 rounded-md text-xs font-mono text-primary bg-primary/5"
+            className="flex items-center gap-4 mb-4"
           >
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            INITIALIZING PROFILE...
+            <span className="text-secondary text-xl">$</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">
+              cat /etc/profile
+            </h2>
           </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white max-w-3xl"
-          >
-            Engineering intelligent products with purpose.
-          </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
-          <div className="flex flex-col gap-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              className="glass p-8 md:p-10 rounded-3xl"
-            >
-              <h3 className="text-sm font-mono text-muted mb-4 uppercase tracking-wider">Summary</h3>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light mb-8">
-                {portfolioData.profile.description}
-              </p>
-
-              {/* Terminal Code Snippet */}
-              <div className="bg-[#0a0a0a] border border-white/5 rounded-xl p-5 md:p-6 font-mono text-sm leading-relaxed overflow-x-auto shadow-inner shadow-black/50">
-                <div className="flex gap-2 mb-4 opacity-70">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="terminal-panel flex flex-col h-full"
+          >
+            <div className="bg-primary/20 border-b border-primary p-2 px-4 flex items-center justify-between text-xs text-primary font-bold uppercase tracking-widest">
+              <div className="flex items-center gap-2"><Terminal size={14} /> about.json</div>
+            </div>
+            <div className="p-6 md:p-8 font-mono text-sm leading-loose overflow-x-auto">
+              <span className="text-secondary">{`{`}</span><br/>
+              <span className="text-primary pl-4">"identity"</span><span className="text-secondary">:</span> <span className="text-white">"{portfolioData.profile.name}"</span>,<br/>
+              <span className="text-primary pl-4">"status"</span><span className="text-secondary">:</span> <span className="text-white">"Active"</span>,<br/>
+              <span className="text-primary pl-4">"philosophy"</span><span className="text-secondary">:</span> <span className="text-muted-foreground">"{portfolioData.about.philosophy}"</span>,<br/>
+              <span className="text-primary pl-4">"current_focus"</span><span className="text-secondary">:</span> <span className="text-muted-foreground">"{portfolioData.about.currentFocus}"</span>,<br/>
+              <span className="text-primary pl-4">"interests"</span><span className="text-secondary">:</span> <span className="text-secondary">[</span><br/>
+              {portfolioData.about.interests.map((interest, i) => (
+                <div key={i} className="pl-8">
+                  <span className="text-white">"{interest}"</span>{i < portfolioData.about.interests.length -1 ? ',' : ''}
                 </div>
-                <div className="text-[#569cd6]">const <span className="text-[#4fc1ff]">kaviraj</span> = {'{'}</div>
-                <div className="pl-4">
-                  <span className="text-[#9cdcfe]">currently_building</span>: <span className="text-[#ce9178]">"AI platforms & scalable backends"</span>,
-                  <br />
-                  <span className="text-[#9cdcfe]">exploring</span>: <span className="text-[#ce9178]">["Deep Learning", "Cloud", "System Design"]</span>,
-                  <br />
-                  <span className="text-[#9cdcfe]">grinding</span>: <span className="text-[#ce9178]">"Data Structures & Algorithms"</span>,
-                  <br />
-                  <span className="text-[#9cdcfe]">location</span>: <span className="text-[#ce9178]">"Chennai, India"</span>
-                </div>
-                <div className="text-[#569cd6]">{'}'}</div>
-              </div>
-            </motion.div>
+              ))}
+              <span className="text-secondary pl-4">]</span><br/>
+              <span className="text-secondary">{`}`}</span>
+            </div>
+          </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-              className="glass p-8 md:p-10 rounded-3xl"
-            >
-              <h3 className="text-sm font-mono text-muted mb-4 uppercase tracking-wider">Education</h3>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light">
-                {portfolioData.profile.education} at <br/>
-                <span className="font-medium text-white">{portfolioData.profile.university}</span>
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="flex flex-col gap-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
-              className="glass p-8 md:p-10 rounded-3xl"
-            >
-              <h3 className="text-sm font-mono text-muted mb-4 uppercase tracking-wider">Philosophy & Focus</h3>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light mb-6">
-                {portfolioData.about.philosophy}
-              </p>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light">
-                {portfolioData.about.currentFocus}
-              </p>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}
-              className="glass p-8 md:p-10 rounded-3xl"
-            >
-              <h3 className="text-sm font-mono text-muted mb-6 uppercase tracking-wider">Interests</h3>
-              <div className="flex flex-wrap gap-3">
-                {portfolioData.about.interests.map((interest, i) => (
-                  <span key={i} className="px-4 py-2 rounded-full glass text-sm text-secondary hover:text-white transition-colors cursor-default border-white/10 hover:border-primary/50 hover:bg-primary/5">
-                    {interest}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+            className="terminal-panel flex flex-col h-full"
+          >
+            <div className="bg-primary/20 border-b border-primary p-2 px-4 flex items-center justify-between text-xs text-primary font-bold uppercase tracking-widest">
+              <div className="flex items-center gap-2"><Terminal size={14} /> education.log</div>
+            </div>
+            <div className="p-6 md:p-8 font-mono text-sm leading-loose text-muted-foreground">
+              <span className="text-secondary">[{new Date().getFullYear()}-01-01 00:00:00]</span> INFO: Booting education module...<br/>
+              <span className="text-secondary">[{new Date().getFullYear()}-01-01 00:00:01]</span> LOAD: <span className="text-white">{portfolioData.profile.education}</span><br/>
+              <span className="text-secondary">[{new Date().getFullYear()}-01-01 00:00:02]</span> ORG: <span className="text-primary">{portfolioData.profile.university}</span><br/>
+              <span className="text-secondary">[{new Date().getFullYear()}-01-01 00:00:03]</span> SPEC: {portfolioData.profile.specialization}<br/>
+              <span className="text-secondary">[{new Date().getFullYear()}-01-01 00:00:04]</span> STATUS: In Progress (Expected 2028)<br/>
+              <br/>
+              <span className="text-secondary text-xs">EOF</span>
+            </div>
+          </motion.div>
 
         </div>
 
-      </motion.div>
+      </div>
     </section>
   );
 };
