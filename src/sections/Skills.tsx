@@ -106,7 +106,7 @@ const Skills = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full sm:w-auto mt-6 md:mt-0">
             <a 
-              href="/Kaviraj%20Thangapandian.pdf" target="_blank" rel="noreferrer"
+              href="/Kaviraj%20Thangapandian%20Resume.pdf" target="_blank" rel="noreferrer"
               className="px-6 py-3 bg-white text-black rounded-full font-medium flex items-center justify-center gap-2 hover:bg-white/90 transition-colors w-full sm:w-auto"
             >
               <Download size={18} /> Download PDF
