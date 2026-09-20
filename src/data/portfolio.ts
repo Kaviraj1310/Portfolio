@@ -2,95 +2,66 @@ export const portfolioData = {
   profile: {
     name: "Kaviraj Thangapandian",
     roles: [
+      "Software Developer Intern",
       "AI Intern",
-      "Machine Learning Intern",
-      "Software Engineer",
-      "Backend Developer"
+      "Machine Learning Engineer",
+      "Full Stack Developer"
     ],
     education: "B.Tech Computer Science & AI/ML",
-    specialization: "Artificial Intelligence & Machine Learning",
+    specialization: "AI & ML Engineering",
     university: "SRM Institute of Science and Technology",
-    description: "Results-driven Computer Science and Engineering undergraduate specializing in AI and ML. Experienced in developing AI-driven platforms, chatbots, and scalable backend solutions.",
+    description: "Undergraduate B.Tech CSE student specializing in AI/ML engineering with internship experience building LLM applications using multimodal RAG and multi-agent chatbot pipelines. Proficient in Python, FastAPI, REST APIs, Qdrant, prompt engineering, scikit-learn, and XGBoost. Full-stack development experience with React and Node.js; hackathon wins include 1st and 2nd place.",
     image: "", // Image removed as per feedback
   },
   stats: {
-    projects: 5,
-    internships: 4,
-    certifications: 5,
+    projects: 3,
+    internships: 2,
+    certifications: 4,
     awards: 2,
     githubRepos: 20
   },
   about: {
     philosophy: "I am dedicated to delivering impactful AI solutions to real-world challenges, blending robust backend engineering with advanced machine learning techniques.",
-    currentFocus: "Building scalable AI systems, fine-tuning large language models, and developing intelligent applications that solve tangible problems.",
+    currentFocus: "Building scalable AI systems, multimodal RAG pipelines, fine-tuning large language models, and developing intelligent multi-agent applications.",
     interests: [
       "Artificial Intelligence",
-      "Machine Learning",
+      "Multimodal RAG",
+      "Multi-Agent Systems",
       "Backend Engineering",
-      "Data Science",
-      "Cloud Computing"
+      "Full Stack Development"
     ]
   },
   experience: [
     {
       id: "jio",
       company: "Jio Platform Limited",
-      role: "AI Intern",
-      duration: "06/2026 - Current",
+      role: "Software Developer Engineering Intern",
+      duration: "06/2026 - 08/2028",
       location: "Mumbai, India",
       logo: "jio", 
-      techStack: ["Python", "FastAPI", "LLMs", "RAG", "Backend APIs"],
+      techStack: ["Python", "FastAPI", "Qdrant", "LLMs", "Multimodal RAG", "Server-Sent Events", "OpenCV"],
       responsibilities: [
-        "Developed multi-purpose AI chatbot platform, enabling users to create customized chatbots with user data.",
-        "Integrated large language models (LLMs) to generate context-aware responses based on user knowledge.",
-        "Built and integrated backend APIs using Python and FastAPI for chatbot data processing and AI interactions.",
-        "Developed AI-powered features and enhanced backend functionality for Get-It platform, improving user experience and engagement.",
-        "Supported development of AI models for data analysis and predictive insights, contributing to data-driven decision-making."
-      ]
-    },
-    {
-      id: "cognifyz",
-      company: "Cognifyz Technologies",
-      role: "Machine Learning Intern",
-      duration: "01/2026 - 02/2026",
-      location: "Remote",
-      logo: "cognifyz",
-      techStack: ["Python", "Scikit-learn", "Machine Learning", "EDA"],
-      responsibilities: [
-        "Developed machine learning models for restaurant rating prediction and cuisine classification, achieving 85–90% accuracy.",
-        "Created a content-based recommendation engine tailored to user preferences, improving user satisfaction and retention.",
-        "Conducted data preprocessing, exploratory data analysis, and geospatial analysis to identify location-based trends.",
-        "Evaluated models with accuracy, precision, recall, and RMSE metrics, reducing prediction error by over 20%."
-      ]
-    },
-    {
-      id: "systemtron",
-      company: "SystemTron",
-      role: "Machine Learning Intern",
-      duration: "01/2026 - 02/2026",
-      location: "Remote",
-      logo: "systemtron",
-      techStack: ["Python", "Machine Learning", "Data Analysis"],
-      responsibilities: [
-        "Engineered and deployed end-to-end machine learning solutions for car price prediction and diabetes risk assessment.",
-        "Achieved model accuracy of 85–92% through advanced preprocessing, feature engineering, and algorithm selection.",
-        "Optimized model performance through hyperparameter tuning, enhancing predictive efficiency by over 20%.",
-        "Designed scalable ML pipelines for data ingestion, cleaning, feature extraction, training, evaluation, and visualization."
+        "Built GET-IT, a multilingual IT helpdesk assistant that resolves employee troubleshooting queries using a RAG pipeline on a vector database (Qdrant), incorporating source citations to enhance answer reliability.",
+        "Integrated multimodal and multilingual input for GET-IT, enabling screenshot error analysis with a vision-language model, voice queries with speech recognition, and translation for English, regional languages, Hinglish, and Tanglish.",
+        "Implemented intent classification, an Assumption Guard that asks for missing context (such as the OS) before answering, and a dynamic troubleshooting planner. Streamed responses in real time with FastAPI and Server-Sent Events.",
+        "Developed a multi-purpose chatbot-creation platform where admins create domain-specific AI agents by uploading files. Each agent gets its own system prompt, documents, and isolated Qdrant collection.",
+        "Built the multimodal ingestion pipeline for PDFs, scanned documents (vision-model OCR fallback), images, video keyframes (OpenCV) and audio, and improved retrieval with page-ordered context, semantic ranking boosts, and page/timestamp-linked citations."
       ]
     },
     {
       id: "reliance",
       company: "Reliance Industries",
       role: "Artificial Intelligence Intern",
-      duration: "12/2025 - 01/2026",
+      duration: "12/2025 - 12/2025",
       location: "Jamnagar, India",
       logo: "reliance",
-      techStack: ["NLP", "n8n", "AI Models", "Automation"],
+      techStack: ["NLP", "n8n", "Ollama", "Generative AI"],
       responsibilities: [
-        "Developed AI-based IT help desk system to automate support and manage user queries efficiently.",
-        "Utilized NLP techniques for intent detection and query classification, enhancing response accuracy.",
-        "Generated intelligent responses and created support tickets, enhancing user interaction efficiency.",
-        "Constructed backend logic with n8n, integrating AI models to support seamless enterprise operations."
+        "Applied NLP for intent detection and query classification, managing vague or partial inputs and writing system prompts for accurate, consistent responses.",
+        "Built generative AI help desk that answered employee questions in natural language and generated troubleshooting guidance.",
+        "Automated workflow in n8n by routing requests to AI engine, applying conditional logic by query type, and creating priority-based tickets to reduce manual effort.",
+        "Built modular backend with structured data handling for queries, ticket status, and resolution history, tested real-world cases and refining prompts and logic flow for improved response consistency.",
+        "Worked with Ollama and Open WebUI to run LLMs locally for secure inference."
       ]
     }
   ],
@@ -99,8 +70,8 @@ export const portfolioData = {
       id: "fintech-credit",
       name: "FinTech Credit Scoring System",
       description: "AI-based financial eligibility platform for gig workers.",
-      longDescription: "Developed a credit scoring platform that evaluates gig workers using earnings, expenses, EMIs, and digital payment behavior. Features a transparent eligibility scoring model with factor-based breakdown and visual analytics.",
-      techStack: ["React.js", "Node.js", "Express.js", "JavaScript", "AI/LLM Integration", "Chart Libraries"],
+      longDescription: "Built a full-stack credit scoring platform that evaluates gig workers on earnings, expenses, EMIs, and digital payment behavior, with a transparent factor-by-factor score breakdown and visual analytics. Developed a What-If simulator that recalculates the credit score as users change inputs, and implemented a loan product matcher and score history tracker. Integrated an LLM to explain scores in regional languages.",
+      techStack: ["React.js", "Node.js", "Express.js", "JavaScript", "LLM Integration"],
       category: "Full Stack AI",
       status: "Completed",
       github: "https://github.com",
@@ -108,19 +79,51 @@ export const portfolioData = {
       image: "",
       featured: true,
       metrics: [
-        { label: "User Inputs", value: "Dynamic" },
-        { label: "Language", value: "Multi-regional" },
-        { label: "Platform", value: "Gig Workers" }
+        { label: "Accuracy", value: "High" },
+        { label: "Languages", value: "Regional" },
+        { label: "Target", value: "Gig Workers" }
+      ]
+    },
+    {
+      id: "restaurant-rating",
+      name: "Restaurant Rating & Cuisine Classification",
+      description: "Rating prediction and cuisine classification models with content-based recommendation.",
+      longDescription: "Built rating prediction and cuisine classification models achieving 85-90% accuracy. Developed a content-based recommendation engine and performed geospatial analysis of location trends.",
+      techStack: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
+      category: "Machine Learning",
+      status: "Completed",
+      github: "https://github.com",
+      liveDemo: "",
+      image: "",
+      featured: false,
+      metrics: [
+        { label: "Accuracy", value: "85-90%" }
+      ]
+    },
+    {
+      id: "car-price-diabetes",
+      name: "Car Price & Diabetes Risk Models",
+      description: "End-to-end ML pipelines for predictive modeling.",
+      longDescription: "Built end-to-end ML pipelines including ingestion, cleaning, training, and evaluation on Kaggle datasets, achieving 85-92% accuracy, improved through rigorous hyperparameter tuning.",
+      techStack: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
+      category: "Machine Learning",
+      status: "Completed",
+      github: "https://github.com",
+      liveDemo: "",
+      image: "",
+      featured: false,
+      metrics: [
+        { label: "Accuracy", value: "85-92%" }
       ]
     }
   ],
   skills: {
     programming: ["Python", "Java", "JavaScript", "SQL"],
-    backend: ["FastAPI", "Node.js", "Express.js", "REST APIs"],
+    backend: ["Node.js", "Express.js", "FastAPI", "REST APIs", "Server-Sent Events"],
     frontend: ["React.js", "HTML", "CSS"],
-    ai_ml: ["LLMs", "Prompt Engineering", "RAG", "NLP", "Machine Learning Pipelines", "Data Preprocessing", "Model Evaluation"],
-    tools: ["Git", "GitHub", "Docker", "Postman", "Jupyter Notebook", "Google Colab", "VS Code"],
-    databases: ["Pandas", "NumPy", "MySQL", "NoSQL", "Data Visualization"],
+    ai_ml: ["LLMs", "RAG", "Multimodal RAG", "Multi-Agent Systems", "NLP", "Prompt Engineering", "Scikit-learn", "XGBoost"],
+    tools: ["Git", "GitHub", "Docker", "Postman", "n8n", "OpenCV"],
+    databases: ["Qdrant (Vector DB)", "MySQL", "NoSQL", "Pandas", "NumPy"],
     cloud: ["Oracle Cloud Infrastructure"]
   },
   socials: {
@@ -130,8 +133,8 @@ export const portfolioData = {
     email: "kaviraj.thangapandian@gmail.com"
   },
   seo: {
-    title: "Kaviraj Thangapandian - Portfolio",
-    description: "AI & ML Engineer",
-    keywords: ["AI Intern", "Machine Learning", "Backend Developer", "Portfolio"]
+    title: "Kaviraj Thangapandian - AI Engineer Portfolio",
+    description: "Undergraduate B.Tech CSE student specializing in AI/ML engineering, LLMs, and Full Stack Development.",
+    keywords: ["AI Engineer", "Machine Learning", "Software Developer", "Portfolio", "RAG", "LLM"]
   }
 };
